@@ -6,12 +6,7 @@ import math
 from stockService import StockDay
 
 def getStockDayValue(dayData):
-    #dayData.selfPrint()
     return dayData.vclose
-    #if (day % 2 ==0):
-    #    return 6 
-    #else:
-    #    return 5
 
 class State:
     day=0
@@ -86,6 +81,7 @@ class SellBuyProblem(Problem):
 
     def goal(self,node):
         if (node.calculateWorth() >= self.startingMoney*self.expectedMoneyGain):
+            self.expectedMoneyGain+=0.1
             return True
         else:
             return False
@@ -244,8 +240,9 @@ def search(startNode,problem):
     
     while (len(nodeList)>0):
         if (problem.goal(nodeList[0])):
-            problem.printPath(nodeList[0])
-            return True
+            print "########Reached a Goal, Raising Stake########"
+            #problem.printPath(nodeList[0])
+            #return True
         newNodes = problem.move(nodeList[0])
         nodeList.pop(0)
         nodeList = insertSorted(nodeList,newNodes)
@@ -258,14 +255,14 @@ def search(startNode,problem):
                 highestDay = k.state.day
                 highestNode=k
 
-        if (amountIterations==5000):
+        if (amountIterations==8000):
             amountIterations=0
             if (lastHighest!=highestValueSoFar):
                 highestCount=0
                 lastHighest=highestValueSoFar
             else:
                 highestCount+=1
-            if (highestCount==2):
+            if (highestCount==3):
                 problem.printPath(highestNode)
                 return False
             #print "it", amountIterations

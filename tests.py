@@ -7,7 +7,7 @@ ss = StockService()
 
 
 stockData = ss.getYearOfStocks("FB","2017")
-initialMoney = 1000
+initialMoney = 10000
 newProblem = SellBuyProblem(initialMoney,1.5,len(stockData)-1,17,stockData)
 startNode = Node()
 startNode.father=0
