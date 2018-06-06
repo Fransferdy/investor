@@ -1,7 +1,7 @@
 
 #dataStockTable[self.state.day].closeValue
 import time
-
+import sys
 import math
 from stockService import StockDay
 
@@ -263,7 +263,7 @@ def search(startNode,problem):
             else:
                 highestCount+=1
             if (highestCount==3):
-                problem.printPath(highestNode)
+                with open('file', 'w') as sys.stdout: problem.printPath(highestNode)
                 return False
             #print "it", amountIterations
             print "val", highestValueSoFar
