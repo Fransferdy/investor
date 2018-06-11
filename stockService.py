@@ -31,6 +31,8 @@ class StockService:
             url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol="+symbol+"&outputsize=full&apikey=G4EN9UNQ4IZ15ZSW"
             response = urllib.urlopen(url)
             self.workingStockJson = json.loads(response.read())
+            with open('stocks.json', 'w') as outfile:
+                json.dump(self.workingStockJson, outfile)
         retStocks = []
         #print self.workingStockJson
         for i in self.workingStockJson['Time Series (Daily)']:

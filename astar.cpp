@@ -1,8 +1,9 @@
 #include <iostream>
-#include <ofstream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <set>
+#include "json.hpp"
 
 #define MOVES_AMOUNT 12
 enum MOVES{
@@ -19,8 +20,6 @@ enum MOVES{
     M_SET90,
     M_SET100
 };
-
-
 
 
 class StockDay
@@ -68,7 +67,7 @@ class State
         return worth;
     }
     private:
-        float calculateWorth()
+        void calculateWorth()
         {
             worth = (assets*dayData->vclose) + money;
         }
@@ -106,7 +105,6 @@ class Node
     }
     Node()
     {
-        
         father = NULL;
     }
     
@@ -140,11 +138,11 @@ Node *Node::cloneSelf()
     return ret;
 }
 
-struct compareNode 
-{
-    bool operator()(const Node& x, const Node& y) const 
-    {
-        return x.summedCost < y.summedCost;
+
+
+struct compareNode {
+    bool operator() (const Node* lhs, const Node* rhs) const {
+        return lhs->summedCost < rhs->summedCost;
     }
 };
 
@@ -152,14 +150,14 @@ class Problem
 {
 public:
 
-    virtual bool goal(Node *node){};
+    virtual bool goal(Node *node){return false;};
     virtual void printPath(Node *node){};
-    virtual StockDay * getDayData(int day){};
-    virtual Node* buyMove(Node *node){};
-    virtual Node* sellMove(Node *node){};
-    virtual Node * waitMove(Node *node){};
-    virtual bool stopCondition(std::vector<Node*> newNodes);
-    virtual std::vector<Node*> move(Node *actual){};
+    virtual StockDay * getDayData(int day){return NULL;};
+    virtual Node* buyMove(Node *node){return NULL;};
+    virtual Node* sellMove(Node *node){return NULL;};
+    virtual Node * waitMove(Node *node){return NULL;};
+    virtual bool stopCondition(std::vector<Node*> newNodes){return false;};
+    virtual std::vector<Node*> move(Node *actual){std::vector<Node*> a; return a;};
 };
 
 #define MAX_UNFRUITFUL_ITERATIONS 8000
@@ -192,7 +190,7 @@ class SellBuyProblem : public Problem
         highestValueSoFar=0;
         highestDay=0;
         lastHighest=0;
-        highestNode;
+        highestNode=NULL;
         highestCount=0;
     }
 
@@ -300,7 +298,7 @@ class SellBuyProblem : public Problem
     {
         std::vector <Node*> newNodes;
         if (actual->state.day>=maxDay)
-            return;
+            return newNodes;
         Node* newNode;
         newNode = buyMove(actual);
         if (newNode!=NULL)
@@ -353,6 +351,7 @@ class SellBuyProblem : public Problem
 
             return false;
         }
+        return false;
     }
 
 };
@@ -383,4 +382,64 @@ void search(Node *startNode, Problem * problem)
             break;   
     }
 
+}
+
+    void dumpObjectConst( const json::JSON &object ) {
+    for( auto &j : object.ObjectRange() )
+        std::cout << "potato" << "Object[ " << j.first << " ] = " << j.second << "\n";
+}
+
+int main()
+{
+    
+    json::JSON obj;
+
+    std::ifstream t("stocks.json");
+    std::string stocksJson((std::istreambuf_iterator<char>(t)),
+                    std::istreambuf_iterator<char>());
+    obj = json::JSON::Load(stocksJson);
+    std::cout << obj["Meta Data"] << std::endl;
+    
+    std::string year,month,day;
+    StockDay stockDay;
+
+    tm timeinfo = {};
+
+    for( auto &j : obj["Time Series (Daily)"].ObjectRange() )
+    {
+        //std::cout << "Object[ " << j.first << " ] = " << j.second << "\n";
+        year = j.first.substr(0,4);
+        month = j.first.substr(5,2);
+        day = j.first.substr(8,2);
+        std::cout << year << '-' << month << '-' << day << std::endl;
+        stockDay.year = std::stoi(year);
+        stockDay.month = std::stoi(month);
+        stockDay.day = std::stoi(day);
+
+        timeinfo.tm_year = stockDay.year - 1900;
+        timeinfo.tm_mon = stockDay.month - 1;
+        timeinfo.tm_mday = stockDay.day;
+        mktime(&timeinfo);
+        stockDay.dayOfYear = timeinfo.tm_yday;
+
+        stockDay.
+    }
+    //dumpObjectConst(obj);
+
+/*
+
+    float initialMoney = 10000;
+    float expectedGain = 1.5;
+    std::vector<StockDay> stocks;
+
+    Node *start = new Node();
+    start->father = NULL;
+    start->state.money =initialMoney;
+    start->heuristicFutureCost = initialMoney*expectedGain - initialMoney;
+
+    SellBuyProblem problem(initialMoney,expectedGain,stocks.size(),17,&stocks);
+
+    search(start,&problem);
+
+*/
 }
