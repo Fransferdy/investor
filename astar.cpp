@@ -37,7 +37,7 @@ class StockDay
     void selfPrint()
     {
         //std::cout << "#############" << std::endl;
-        std::cout << year << "/" << month << "/" << "day" << std::endl;
+        std::cout << year << "/" << month << "/" << day << std::endl;
         std::cout << "Open: " << vopen << std::endl;
         std::cout << "Close: " << vclose << std::endl;
         std::cout << "High: " << vhigh << std::endl;
@@ -59,6 +59,10 @@ class State
     State()
     {
         worth = -1;
+        day =0;
+        money = 0;
+        assets = 0;
+        buySellAmount =0;
     }
     float getWorth()
     {
@@ -68,7 +72,7 @@ class State
     }
     private:
         void calculateWorth()
-        {
+        { 
             worth = (assets*dayData->vclose) + money;
         }
 };
@@ -111,7 +115,7 @@ class Node
     
     void printData()
     {
-        std::cout << "Generator: " << generatorMoveNames[generatorMove] << std::endl;
+        std::cout << "Generator: " << Node::generatorMoveNames[generatorMove] << std::endl;
         std::cout << "Cost: " << summedCost << std::endl;
         std::cout << "Day: " << state.day << std::endl;
         std::cout << "Final Money: " << state.money << std::endl;
@@ -120,10 +124,10 @@ class Node
         std::cout << "#############" << std::endl;
     }
 
-    Node *cloneSelf();
-
-    
+    Node *cloneSelf(); 
 };
+std::string Node::generatorMoveNames[MOVES_AMOUNT];
+
 
 Node *Node::cloneSelf()
 {
@@ -134,6 +138,7 @@ Node *Node::cloneSelf()
     ret->state.buySellAmount = this->state.buySellAmount;
     ret->state.money = this->state.money;
     ret->state.assets = this->state.assets;
+    ret->state.day = this->state.day;
 
     return ret;
 }
@@ -160,7 +165,7 @@ public:
     virtual std::vector<Node*> move(Node *actual){std::vector<Node*> a; return a;};
 };
 
-#define MAX_UNFRUITFUL_ITERATIONS 8000
+#define MAX_UNFRUITFUL_ITERATIONS 100000
 #define MAX_CONSECUTIVE_UNFRUITFUL_TRIES 3
 class SellBuyProblem : public Problem
 {
@@ -196,8 +201,10 @@ class SellBuyProblem : public Problem
 
     bool goal(Node *node)
     {
+        
         if (node->state.getWorth() >= startingMoney*expectedMoneyGain )
         {
+           node->printData(); 
             expectedMoneyGain+=0.1;
 
             float worth = node->state.getWorth();
@@ -233,7 +240,9 @@ class SellBuyProblem : public Problem
         if (node->state.money < transactionCost)
             return NULL;
         Node * retNode = node->cloneSelf();
+        
         retNode->state.day++;
+        
         retNode->state.dayData = getDayData(retNode->state.day);
         float spendAmount = retNode->state.buySellAmount * retNode->state.money;
         float stockValue = retNode->state.dayData->vclose;
@@ -315,6 +324,7 @@ class SellBuyProblem : public Problem
     bool stopCondition(std::vector<Node*> newNodes)
     {
         float worth;
+        amountIterations++;
         for (std::vector<Node*>::iterator it = newNodes.begin() ; it != newNodes.end(); ++it)
         {
             worth = (*it)->state.getWorth();
@@ -365,13 +375,17 @@ void search(Node *startNode, Problem * problem)
     Node * actualNode;
     nodeList.insert(startNode);
     
+    
     while(!nodeList.empty())
     {
         actualNode = *nodeList.begin();
+        
         if ( problem->goal( actualNode ) )
             std::cout << "########Reached a Goal, Raising Stake########" <<std::endl;
         
+
         newNodes = problem->move(actualNode);
+        
         pastNodes.insert(actualNode);
         nodeList.erase(actualNode);
 
@@ -391,7 +405,8 @@ void search(Node *startNode, Problem * problem)
 
 int main()
 {
-    
+    Node::setupMoveNames();
+    std::vector<StockDay> stocks;
     json::JSON obj;
 
     std::ifstream t("stocks.json");
@@ -411,7 +426,7 @@ int main()
         year = j.first.substr(0,4);
         month = j.first.substr(5,2);
         day = j.first.substr(8,2);
-        std::cout << year << '-' << month << '-' << day << std::endl;
+        //std::cout << year << '-' << month << '-' << day << std::endl;
         stockDay.year = std::stoi(year);
         stockDay.month = std::stoi(month);
         stockDay.day = std::stoi(day);
@@ -421,25 +436,33 @@ int main()
         timeinfo.tm_mday = stockDay.day;
         mktime(&timeinfo);
         stockDay.dayOfYear = timeinfo.tm_yday;
-
-        stockDay.
+        //std::cout << j.second["1. open"] << std::endl;
+        stockDay.vopen = std::atof(j.second["1. open"].ToString().c_str());
+        stockDay.vclose = std::atof(j.second["4. close"].ToString().c_str());
+        stockDay.vhigh = std::atof(j.second["2. high"].ToString().c_str());
+        stockDay.vlow = std::atof(j.second["3. low"].ToString().c_str());
+        stockDay.volume = std::atof(j.second["5. volume"].ToString().c_str());
+        //stockDay.selfPrint();
+        stocks.push_back(stockDay);
     }
-    //dumpObjectConst(obj);
 
-/*
-
+    for (auto it = stocks.begin() ; it != stocks.end(); ++it)
+    {
+    //    (*it).selfPrint();
+    }
     float initialMoney = 10000;
     float expectedGain = 1.5;
-    std::vector<StockDay> stocks;
+    
 
     Node *start = new Node();
+    start->state.buySellAmount = 1;
+    start->state.day=0;
     start->father = NULL;
     start->state.money =initialMoney;
     start->heuristicFutureCost = initialMoney*expectedGain - initialMoney;
-
+    start->state.dayData = &stocks[0];
     SellBuyProblem problem(initialMoney,expectedGain,stocks.size(),17,&stocks);
 
     search(start,&problem);
 
-*/
 }
