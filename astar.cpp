@@ -165,7 +165,7 @@ public:
     virtual std::vector<Node*> move(Node *actual){std::vector<Node*> a; return a;};
 };
 
-#define MAX_UNFRUITFUL_ITERATIONS 100000
+#define MAX_UNFRUITFUL_ITERATIONS 1000000
 #define MAX_CONSECUTIVE_UNFRUITFUL_TRIES 3
 class SellBuyProblem : public Problem
 {
@@ -403,27 +403,26 @@ void search(Node *startNode, Problem * problem)
         std::cout << "potato" << "Object[ " << j.first << " ] = " << j.second << "\n";
 }
 
-int main()
+std::vector<StockDay> loadStocksFromJson(std::string fileName,std::string yeararg)
 {
-    Node::setupMoveNames();
     std::vector<StockDay> stocks;
     json::JSON obj;
-
-    std::ifstream t("stocks.json");
+    std::ifstream t(fileName);
     std::string stocksJson((std::istreambuf_iterator<char>(t)),
                     std::istreambuf_iterator<char>());
     obj = json::JSON::Load(stocksJson);
     std::cout << obj["Meta Data"] << std::endl;
-    
     std::string year,month,day;
     StockDay stockDay;
-
     tm timeinfo = {};
 
     for( auto &j : obj["Time Series (Daily)"].ObjectRange() )
     {
         //std::cout << "Object[ " << j.first << " ] = " << j.second << "\n";
         year = j.first.substr(0,4);
+        if (year!=yeararg)
+            continue;
+
         month = j.first.substr(5,2);
         day = j.first.substr(8,2);
         //std::cout << year << '-' << month << '-' << day << std::endl;
@@ -445,6 +444,15 @@ int main()
         //stockDay.selfPrint();
         stocks.push_back(stockDay);
     }
+
+    return stocks;
+}
+
+int main()
+{
+    Node::setupMoveNames();
+    std::vector<StockDay> stocks;
+    stocks = loadStocksFromJson("stocks.json","2017");
 
     for (auto it = stocks.begin() ; it != stocks.end(); ++it)
     {
