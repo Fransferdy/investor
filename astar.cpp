@@ -70,6 +70,10 @@ class State
             calculateWorth();
         return worth;
     }
+    std::string formattedDay()
+    {
+        return ""+std::to_string(dayData->year)+"-"+std::to_string(dayData->month)+"-"+std::to_string(dayData->day);
+    }
     private:
         void calculateWorth()
         { 
@@ -165,7 +169,7 @@ public:
     virtual std::vector<Node*> move(Node *actual){std::vector<Node*> a; return a;};
 };
 
-#define MAX_UNFRUITFUL_ITERATIONS 1000000
+#define MAX_UNFRUITFUL_ITERATIONS 3000000
 #define MAX_CONSECUTIVE_UNFRUITFUL_TRIES 3
 class SellBuyProblem : public Problem
 {
@@ -182,6 +186,7 @@ class SellBuyProblem : public Problem
         float lastHighest;
         Node* highestNode;
         int highestCount;
+        json::JSON out;
 
     SellBuyProblem(float startMoneyarg, float expectedGainarg, int maxDayarg, float transactionCostarg,std::vector<StockDay> *stockDataarg)
     {
@@ -197,11 +202,13 @@ class SellBuyProblem : public Problem
         lastHighest=0;
         highestNode=NULL;
         highestCount=0;
+        out["buy"] = json::Array();
+        out["sell"] = json::Array();
+        out["wait"] = json::Array();
     }
 
     bool goal(Node *node)
     {
-        
         if (node->state.getWorth() >= startingMoney*expectedMoneyGain )
         {
            node->printData(); 
@@ -214,11 +221,26 @@ class SellBuyProblem : public Problem
                 highestDay = node->state.day;
                 highestNode=node;
             }
+            addDays(node);
 
             return true;
         }
         else
             return false;
+    }
+
+    void addDays(Node *node)
+    {
+        if (node->father!=NULL)
+        {
+            if (node->generatorMove==M_BUY)
+                out["buy"].append(node->state.formattedDay());
+            if (node->generatorMove==M_SELL)
+                out["sell"].append(node->state.formattedDay());
+            if (node->generatorMove==M_WAIT)
+                out["wait"].append(node->state.formattedDay());
+            addDays(node->father);
+        }
     }
 
     void printPath(Node *node)
@@ -342,6 +364,7 @@ class SellBuyProblem : public Problem
             {
                 highestCount=0;
                 lastHighest=highestValueSoFar;
+                addDays(highestNode);
             }
             else
                 highestCount+=1;
@@ -354,6 +377,7 @@ class SellBuyProblem : public Problem
                 out.close();
                 std::cout.rdbuf(coutbuf);
                 printPath(highestNode);
+                addDays(highestNode);
                 return true;
             }
             std::cout << "val " << highestValueSoFar << std::endl;
@@ -420,7 +444,7 @@ std::vector<StockDay> loadStocksFromJson(std::string fileName,std::string yearar
     {
         //std::cout << "Object[ " << j.first << " ] = " << j.second << "\n";
         year = j.first.substr(0,4);
-        if (year!=yeararg)
+        if (j.first.find(yeararg)==std::string::npos)
             continue;
 
         month = j.first.substr(5,2);
@@ -452,14 +476,14 @@ int main()
 {
     Node::setupMoveNames();
     std::vector<StockDay> stocks;
-    stocks = loadStocksFromJson("stocks.json","2017");
+    stocks = loadStocksFromJson("stocks.json","2018");
 
     for (auto it = stocks.begin() ; it != stocks.end(); ++it)
     {
-    //    (*it).selfPrint();
+        (*it).selfPrint();
     }
     float initialMoney = 10000;
-    float expectedGain = 1.5;
+    float expectedGain = 1.1;
     
 
     Node *start = new Node();
@@ -473,4 +497,5 @@ int main()
 
     search(start,&problem);
 
+    std::cout << problem.out << std::endl;
 }
