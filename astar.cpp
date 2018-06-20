@@ -72,7 +72,13 @@ class State
     }
     std::string formattedDay()
     {
-        return ""+std::to_string(dayData->year)+"-"+std::to_string(dayData->month)+"-"+std::to_string(dayData->day);
+        std::string month0 = "";
+        std::string day0 = "";
+        if (dayData->month<10)
+            month0 = "0";
+        if (dayData->day<10)
+            day0 = "0";    
+        return ""+std::to_string(dayData->year)+"-"+month0+std::to_string(dayData->month)+"-"+day0+std::to_string(dayData->day);
     }
     private:
         void calculateWorth()
@@ -186,9 +192,14 @@ class SellBuyProblem : public Problem
         float lastHighest;
         Node* highestNode;
         int highestCount;
-        json::JSON out;
+        std::map<std::string, int> *dayResults;
 
-    SellBuyProblem(float startMoneyarg, float expectedGainarg, int maxDayarg, float transactionCostarg,std::vector<StockDay> *stockDataarg)
+    SellBuyProblem(float startMoneyarg, float expectedGainarg, int maxDayarg, float transactionCostarg,std::vector<StockDay> *stockDataarg, std::map<std::string, int> *dayResultsarg)
+    {
+        reset(startMoneyarg,expectedGainarg,maxDayarg,transactionCostarg,stockDataarg,dayResultsarg);
+    }
+
+    void reset(float startMoneyarg, float expectedGainarg, int maxDayarg, float transactionCostarg,std::vector<StockDay> *stockDataarg, std::map<std::string, int> *dayResultsarg)
     {
         startingMoney = startMoneyarg;
         expectedMoneyGain = expectedGainarg;
@@ -202,9 +213,7 @@ class SellBuyProblem : public Problem
         lastHighest=0;
         highestNode=NULL;
         highestCount=0;
-        out["buy"] = json::Array();
-        out["sell"] = json::Array();
-        out["wait"] = json::Array();
+        dayResults = dayResultsarg;
     }
 
     bool goal(Node *node)
@@ -233,12 +242,15 @@ class SellBuyProblem : public Problem
     {
         if (node->father!=NULL)
         {
-            if (node->generatorMove==M_BUY)
-                out["buy"].append(node->state.formattedDay());
-            if (node->generatorMove==M_SELL)
-                out["sell"].append(node->state.formattedDay());
-            if (node->generatorMove==M_WAIT)
-                out["wait"].append(node->state.formattedDay());
+            auto ret = dayResults->insert(std::pair<std::string,int>(node->state.formattedDay(),node->generatorMove));
+            if (ret.second==false)
+            {
+                if (ret.first->second==M_WAIT && ret.first->second!=node->generatorMove)
+                {
+                    ret.first->second = node->generatorMove;
+                    std::cout << ret.first->first << " => " << ret.first->second << std::endl;
+                }
+            }
             addDays(node->father);
         }
     }
@@ -394,9 +406,10 @@ class SellBuyProblem : public Problem
 void search(Node *startNode, Problem * problem)
 {
     std::set<Node*,compareNode> nodeList;
-    std::set<Node*,compareNode> pastNodes;
+    std::vector<Node*> pastNodes;
     std::vector<Node*> newNodes;
     Node * actualNode;
+    Node * deleteNode;
     nodeList.insert(startNode);
     
     
@@ -409,15 +422,22 @@ void search(Node *startNode, Problem * problem)
         
 
         newNodes = problem->move(actualNode);
-        
-        pastNodes.insert(actualNode);
         nodeList.erase(actualNode);
 
         for (std::vector<Node*>::iterator it = newNodes.begin() ; it != newNodes.end(); ++it)
+        {
             nodeList.insert(*it);
-
+            pastNodes.push_back(*it);
+        }
         if (problem->stopCondition(newNodes))
             break;   
+    }
+    
+    for (auto it = pastNodes.begin() ; it != pastNodes.end(); ++it)
+    {
+        deleteNode = *it;
+        //std::cout << "deleted " << deleteNode->state.day << std::endl;
+        delete deleteNode;  
     }
 
 }
@@ -472,19 +492,12 @@ std::vector<StockDay> loadStocksFromJson(std::string fileName,std::string yearar
     return stocks;
 }
 
-int main()
+void searchYear(std::vector<StockDay> stocks, float initialMoney,float expectedGain,std::map<std::string,int> &dayResults)
 {
-    Node::setupMoveNames();
-    std::vector<StockDay> stocks;
-    stocks = loadStocksFromJson("stocks.json","2018");
-
-    for (auto it = stocks.begin() ; it != stocks.end(); ++it)
-    {
-        (*it).selfPrint();
-    }
-    float initialMoney = 10000;
-    float expectedGain = 1.1;
+    size_t halfsize = stocks.size()/2;
     
+    std::vector<StockDay> stocksFirst(stocks.begin(), stocks.begin() + halfsize);
+    std::vector<StockDay> stocksLast(stocks.begin() + halfsize, stocks.end() );
 
     Node *start = new Node();
     start->state.buySellAmount = 1;
@@ -493,9 +506,79 @@ int main()
     start->state.money =initialMoney;
     start->heuristicFutureCost = initialMoney*expectedGain - initialMoney;
     start->state.dayData = &stocks[0];
-    SellBuyProblem problem(initialMoney,expectedGain,stocks.size(),17,&stocks);
-
+    SellBuyProblem problem(initialMoney,expectedGain,halfsize,17,&stocksFirst,&dayResults);
     search(start,&problem);
 
-    std::cout << problem.out << std::endl;
+    start = new Node();
+    start->state.buySellAmount = 1;
+    start->state.day=0;
+    start->father = NULL;
+    start->state.money =initialMoney;
+    start->heuristicFutureCost = initialMoney*expectedGain - initialMoney;
+    start->state.dayData = &stocksLast[0];
+    problem.reset(initialMoney,expectedGain,halfsize,17,&stocksLast,&dayResults);
+    search(start,&problem);
+
+}
+
+
+int main()
+{
+    Node::setupMoveNames();
+    std::vector<StockDay> stocks;
+    float initialMoney = 10000;
+    float expectedGain = 1.1;
+    std::map<std::string,int> dayResults;
+    json::JSON out;
+
+    stocks = loadStocksFromJson("stocksbr.json","2012");
+    /*
+    for (auto it = stocks.begin() ; it != stocks.end(); ++it)
+        (*it).selfPrint();
+    */
+
+    searchYear(stocks,10000,1.1,dayResults);
+
+    stocks = loadStocksFromJson("stocksbr.json","2013");
+    searchYear(stocks,10000,1.1,dayResults);
+
+    stocks = loadStocksFromJson("stocksbr.json","2014");
+    searchYear(stocks,10000,1.1,dayResults);
+
+    stocks = loadStocksFromJson("stocksbr.json","2015");
+    searchYear(stocks,10000,1.1,dayResults);
+
+    stocks = loadStocksFromJson("stocksbr.json","2016");
+    searchYear(stocks,10000,1.1,dayResults);
+
+    stocks = loadStocksFromJson("stocksbr.json","2017");
+    searchYear(stocks,10000,1.1,dayResults);
+
+
+    out["buy"] = json::Array();
+    out["sell"] = json::Array();
+    out["wait"] = json::Array();
+    std::map<std::string,int>::iterator it = dayResults.begin();
+    for (it=dayResults.begin(); it!=dayResults.end(); ++it)
+    {
+        if (it->second==M_BUY)
+            out["buy"][out["buy"].size()] = it->first;
+        if (it->second==M_SELL)
+            out["sell"][out["sell"].size()] = it->first;
+        if (it->second==M_WAIT)
+            out["wait"][out["wait"].size()] = it->first;
+        std::cout << it->first << " => " << it->second << std::endl;
+    }
+
+    std::cout << "Buy Size " << out["buy"].size() <<std::endl;
+    std::cout << "Sell Size " << out["sell"].size() <<std::endl;
+    std::cout << "Wait Size " << out["wait"].size() <<std::endl;
+    std::ofstream myfile;
+    myfile.open ("labeledDays.json");
+    myfile << out;
+    myfile.close();
+
+        //std::cout << it->first << " => " << it->second << std::endl;
+    
+    //std::cout << problem.out << std::endl;
 }

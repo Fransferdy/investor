@@ -1,770 +1,854 @@
 Generator: Wait
-Cost: 783.47
-Day: 110
-Final Money: -16.999
-Assets: 66.6358
-Worth: 12783.7
-#############
-Generator: Wait
-Cost: 783.47
-Day: 109
-Final Money: -16.999
-Assets: 66.6358
-Worth: 12583.8
+Cost: 1155.96
+Day: 122
+Final Money: -17
+Assets: 317.637
+Worth: 13508
 #############
 Generator: Buy
-Cost: 783.47
-Day: 108
-Final Money: -16.999
-Assets: 66.6358
-Worth: 12522.5
+Cost: 1155.96
+Day: 121
+Final Money: -17
+Assets: 317.637
+Worth: 13473
 #############
 Generator: Sell
-Cost: 749.47
-Day: 107
-Final Money: 12539.5
+Cost: 1121.96
+Day: 120
+Final Money: 13490
 Assets: 0
-Worth: 12539.5
+Worth: 13490
+#############
+Generator: Buy
+Cost: 1141.81
+Day: 119
+Final Money: -17
+Assets: 316.722
+Worth: 13453.2
+#############
+Generator: Sell
+Cost: 1107.81
+Day: 118
+Final Money: 13470.2
+Assets: 0
+Worth: 13470.2
 #############
 Generator: Wait
-Cost: 587.986
+Cost: 1667.95
+Day: 117
+Final Money: -17
+Assets: 316.035
+Worth: 12940.5
+#############
+Generator: Buy
+Cost: 1667.95
+Day: 116
+Final Money: -17
+Assets: 316.035
+Worth: 12893
+#############
+Generator: Sell
+Cost: 1633.95
+Day: 115
+Final Money: 12910
+Assets: 0
+Worth: 12910
+#############
+Generator: Wait
+Cost: 1388.84
+Day: 114
+Final Money: -17
+Assets: 315.094
+Worth: 12930.2
+#############
+Generator: Wait
+Cost: 1388.84
+Day: 113
+Final Money: -17
+Assets: 315.094
+Worth: 12930.2
+#############
+Generator: Buy
+Cost: 1388.84
+Day: 112
+Final Money: -17
+Assets: 315.094
+Worth: 13138.2
+#############
+Generator: Sell
+Cost: 1354.84
+Day: 111
+Final Money: 13155.2
+Assets: 0
+Worth: 13155.2
+#############
+Generator: Wait
+Cost: 1571.03
+Day: 110
+Final Money: -17
+Assets: 308.88
+Worth: 13067.1
+#############
+Generator: Wait
+Cost: 1571.03
+Day: 109
+Final Money: -17
+Assets: 308.88
+Worth: 13033.2
+#############
+Generator: Buy
+Cost: 1571.03
+Day: 108
+Final Money: -17
+Assets: 308.88
+Worth: 12922
+#############
+Generator: Sell
+Cost: 1537.03
+Day: 107
+Final Money: 12939
+Assets: 0
+Worth: 12939
+#############
+Generator: Buy
+Cost: 1638.84
 Day: 106
 Final Money: -16.999
-Assets: 65.713
-Worth: 12661.7
-#############
-Generator: Buy
-Cost: 587.986
-Day: 105
-Final Money: -16.999
-Assets: 65.713
-Worth: 12684
+Assets: 308.66
+Worth: 12820.2
 #############
 Generator: Sell
-Cost: 553.986
-Day: 104
-Final Money: 12701
+Cost: 1604.84
+Day: 105
+Final Money: 12837.2
 Assets: 0
-Worth: 12701
+Worth: 12837.2
 #############
 Generator: Wait
-Cost: 1115.41
+Cost: 1558.54
+Day: 104
+Final Money: -17
+Assets: 307.628
+Worth: 12666.5
+#############
+Generator: Wait
+Cost: 1558.54
 Day: 103
 Final Money: -17
-Assets: 65.6478
-Worth: 12572.9
+Assets: 307.628
+Worth: 12678.8
 #############
-Generator: Wait
-Cost: 1115.41
+Generator: Buy
+Cost: 1558.54
 Day: 102
 Final Money: -17
-Assets: 65.6478
-Worth: 12303.1
+Assets: 307.628
+Worth: 12866.5
+#############
+Generator: Sell
+Cost: 1524.54
+Day: 101
+Final Money: 12883.5
+Assets: 0
+Worth: 12883.5
 #############
 Generator: Wait
-Cost: 1115.41
-Day: 101
-Final Money: -17
-Assets: 65.6478
-Worth: 12176.4
-#############
-Generator: Buy
-Cost: 1115.41
+Cost: 1590.23
 Day: 100
 Final Money: -17
-Assets: 65.6478
-Worth: 12122.6
-#############
-Generator: Sell
-Cost: 1081.41
-Day: 99
-Final Money: 12139.6
-Assets: 0
-Worth: 12139.6
-#############
-Generator: Wait
-Cost: 1186.87
-Day: 98
-Final Money: -17
-Assets: 65.474
-Worth: 12220.1
+Assets: 302.092
+Worth: 12879.3
 #############
 Generator: Buy
-Cost: 1186.87
+Cost: 1590.23
+Day: 99
+Final Money: -17
+Assets: 302.092
+Worth: 12800.8
+#############
+Generator: Sell
+Cost: 1556.23
+Day: 98
+Final Money: 12817.8
+Assets: 0
+Worth: 12817.8
+#############
+Generator: Buy
+Cost: 1483.22
 Day: 97
 Final Money: -17
-Assets: 65.474
-Worth: 12017.1
+Assets: 300.065
+Worth: 12873.8
 #############
 Generator: Sell
-Cost: 1152.87
+Cost: 1449.22
 Day: 96
-Final Money: 12034.1
+Final Money: 12890.8
 Assets: 0
-Worth: 12034.1
+Worth: 12890.8
 #############
-Generator: Buy
-Cost: 1237.27
+Generator: Wait
+Cost: 2148.16
 Day: 95
 Final Money: -17
-Assets: 65.4135
-Worth: 11932.7
-#############
-Generator: Sell
-Cost: 1203.27
-Day: 94
-Final Money: 11949.7
-Assets: 0
-Worth: 11949.7
+Assets: 297.943
+Worth: 12654.5
 #############
 Generator: Wait
-Cost: 1132.75
-Day: 93
+Cost: 2148.16
+Day: 94
 Final Money: -17
-Assets: 65.214
-Worth: 11930.2
+Assets: 297.943
+Worth: 12481.7
 #############
 Generator: Buy
-Cost: 1132.75
-Day: 92
+Cost: 2148.16
+Day: 93
 Final Money: -17
-Assets: 65.214
-Worth: 12003.3
+Assets: 297.943
+Worth: 12174.8
 #############
 Generator: Sell
-Cost: 1098.75
-Day: 91
-Final Money: 12020.3
+Cost: 2114.16
+Day: 92
+Final Money: 12191.8
 Assets: 0
-Worth: 12020.3
+Worth: 12191.8
 #############
 Generator: Wait
-Cost: 1879.82
+Cost: 2159.29
+Day: 91
+Final Money: -17
+Assets: 293.045
+Worth: 12147.3
+#############
+Generator: Buy
+Cost: 2159.29
 Day: 90
-Final Money: -16.999
-Assets: 64.5856
-Worth: 12059.9
+Final Money: -17
+Assets: 293.045
+Worth: 12129.7
 #############
-Generator: Wait
-Cost: 1879.82
+Generator: Sell
+Cost: 2125.29
 Day: 89
-Final Money: -16.999
-Assets: 64.5856
-Worth: 11965.6
+Final Money: 12146.7
+Assets: 0
+Worth: 12146.7
 #############
 Generator: Wait
-Cost: 1879.82
+Cost: 2248.55
 Day: 88
+Final Money: -17
+Assets: 285.932
+Worth: 11734.8
+#############
+Generator: Wait
+Cost: 2248.55
+Day: 87
+Final Money: -17
+Assets: 285.932
+Worth: 12020.8
+#############
+Generator: Wait
+Cost: 2248.55
+Day: 86
+Final Money: -17
+Assets: 285.932
+Worth: 11966.4
+#############
+Generator: Wait
+Cost: 2248.55
+Day: 85
+Final Money: -17
+Assets: 285.932
+Worth: 11800.6
+#############
+Generator: Buy
+Cost: 2248.55
+Day: 84
+Final Money: -17
+Assets: 285.932
+Worth: 12006.5
+#############
+Generator: Sell
+Cost: 2214.55
+Day: 83
+Final Money: 12023.5
+Assets: 0
+Worth: 12023.5
+#############
+Generator: Buy
+Cost: 2023.92
+Day: 82
+Final Money: -17
+Assets: 279.69
+Worth: 12197.1
+#############
+Generator: Sell
+Cost: 1989.92
+Day: 81
+Final Money: 12214.1
+Assets: 0
+Worth: 12214.1
+#############
+Generator: Wait
+Cost: 2053.48
+Day: 80
+Final Money: -17
+Assets: 278.746
+Worth: 12306.3
+#############
+Generator: Wait
+Cost: 2053.48
+Day: 79
+Final Money: -17
+Assets: 278.746
+Worth: 12222.7
+#############
+Generator: Buy
+Cost: 2053.48
+Day: 78
+Final Money: -17
+Assets: 278.746
+Worth: 12133.5
+#############
+Generator: Sell
+Cost: 2019.48
+Day: 77
+Final Money: 12150.5
+Assets: 0
+Worth: 12150.5
+#############
+Generator: Buy
+Cost: 1960.56
+Day: 76
+Final Money: -17
+Assets: 276.921
+Worth: 12192.4
+#############
+Generator: Sell
+Cost: 1926.56
+Day: 75
+Final Money: 12209.4
+Assets: 0
+Worth: 12209.4
+#############
+Generator: Wait
+Cost: 1831.91
+Day: 74
+Final Money: -17
+Assets: 275.691
+Worth: 12204.4
+#############
+Generator: Wait
+Cost: 1831.91
+Day: 73
+Final Money: -17
+Assets: 275.691
+Worth: 12223.7
+#############
+Generator: Buy
+Cost: 1831.91
+Day: 72
+Final Money: -17
+Assets: 275.691
+Worth: 12287.1
+#############
+Generator: Sell
+Cost: 1797.91
+Day: 71
+Final Money: 12304.1
+Assets: 0
+Worth: 12304.1
+#############
+Generator: Wait
+Cost: 1996.96
+Day: 70
+Final Money: -17
+Assets: 274.18
+Worth: 12389.6
+#############
+Generator: Buy
+Cost: 1996.96
+Day: 69
+Final Money: -17
+Assets: 274.18
+Worth: 12088
+#############
+Generator: Sell
+Cost: 1962.96
+Day: 68
+Final Money: 12105
+Assets: 0
+Worth: 12105
+#############
+Generator: Wait
+Cost: 1977.86
+Day: 67
 Final Money: -16.999
-Assets: 64.5856
+Assets: 271.688
+Worth: 12266
+#############
+Generator: Buy
+Cost: 1977.86
+Day: 66
+Final Money: -16.999
+Assets: 271.688
+Worth: 12073.1
+#############
+Generator: Sell
+Cost: 1943.86
+Day: 65
+Final Money: 12090.1
+Assets: 0
+Worth: 12090.1
+#############
+Generator: Wait
+Cost: 1034
+Day: 64
+Final Money: -51
+Assets: 270.783
+Worth: 11703.7
+#############
+Generator: Wait
+Cost: 1034
+Day: 63
+Final Money: -51
+Assets: 270.783
+Worth: 11687.4
+#############
+Generator: Wait
+Cost: 1034
+Day: 62
+Final Money: -34
+Assets: 270.783
+Worth: 11604.2
+#############
+Generator: Wait
+Cost: 1034
+Day: 61
+Final Money: -34
+Assets: 270.783
+Worth: 11666.5
+#############
+Generator: Wait
+Cost: 1034
+Day: 60
+Final Money: -34
+Assets: 270.783
+Worth: 11658.4
+#############
+Generator: Wait
+Cost: 1034
+Day: 59
+Final Money: -34
+Assets: 270.783
+Worth: 11636.7
+#############
+Generator: Wait
+Cost: 1034
+Day: 58
+Final Money: -34
+Assets: 270.783
+Worth: 11753.2
+#############
+Generator: Wait
+Cost: 1034
+Day: 57
+Final Money: -34
+Assets: 270.783
+Worth: 11712.5
+#############
+Generator: Wait
+Cost: 1034
+Day: 56
+Final Money: -34
+Assets: 270.783
+Worth: 11696.3
+#############
+Generator: Wait
+Cost: 1034
+Day: 55
+Final Money: -34
+Assets: 270.783
+Worth: 11820.9
+#############
+Generator: Wait
+Cost: 1034
+Day: 54
+Final Money: -34
+Assets: 270.783
+Worth: 11864.2
+#############
+Generator: Wait
+Cost: 1034
+Day: 53
+Final Money: -34
+Assets: 270.783
 Worth: 11780.2
 #############
 Generator: Wait
-Cost: 1879.82
-Day: 87
-Final Money: -16.999
-Assets: 64.5856
-Worth: 11538.7
-#############
-Generator: Wait
-Cost: 1879.82
-Day: 86
-Final Money: -16.999
-Assets: 64.5856
-Worth: 11477.3
-#############
-Generator: Wait
-Cost: 1879.82
-Day: 85
-Final Money: -16.999
-Assets: 64.5856
-Worth: 11389.5
-#############
-Generator: Buy
-Cost: 1879.82
-Day: 84
-Final Money: -16.999
-Assets: 64.5856
-Worth: 11222.2
-#############
-Generator: Sell
-Cost: 1845.82
-Day: 83
-Final Money: 11239.2
-Assets: 0
-Worth: 11239.2
-#############
-Generator: Wait
-Cost: 2072.41
-Day: 82
-Final Money: -16.999
-Assets: 64.0267
-Worth: 11114.7
-#############
-Generator: Buy
-Cost: 2072.41
-Day: 81
-Final Money: -16.999
-Assets: 64.0267
-Worth: 10995.6
-#############
-Generator: Sell
-Cost: 2038.41
-Day: 80
-Final Money: 11012.6
-Assets: 0
-Worth: 11012.6
-#############
-Generator: Wait
-Cost: 1000.95
-Day: 79
-Final Money: -17
-Assets: 63.6361
-Worth: 11065.9
-#############
-Generator: Wait
-Cost: 1000.95
-Day: 78
-Final Money: -17
-Assets: 63.6361
-Worth: 10145
-#############
-Generator: Wait
-Cost: 1000.95
-Day: 77
-Final Money: -17
-Assets: 63.6361
-Worth: 10145
-#############
-Generator: Wait
-Cost: 1000.95
-Day: 76
-Final Money: -17
-Assets: 63.6361
-Worth: 10536.4
-#############
-Generator: Wait
-Cost: 1000.95
-Day: 75
-Final Money: -17
-Assets: 63.6361
-Worth: 10564.4
-#############
-Generator: Wait
-Cost: 1000.95
-Day: 74
-Final Money: -17
-Assets: 63.6361
-Worth: 10680.2
-#############
-Generator: Wait
-Cost: 1000.95
-Day: 73
-Final Money: -17
-Assets: 63.6361
-Worth: 10569.5
-#############
-Generator: Wait
-Cost: 1000.95
-Day: 72
-Final Money: -17
-Assets: 63.6361
-Worth: 10715.9
-#############
-Generator: Wait
-Cost: 1000.95
-Day: 71
-Final Money: -17
-Assets: 63.6361
-Worth: 10472.1
-#############
-Generator: Wait
-Cost: 1000.95
-Day: 70
-Final Money: -17
-Assets: 63.6361
-Worth: 10452.4
-#############
-Generator: Wait
-Cost: 1000.95
-Day: 69
-Final Money: -17
-Assets: 63.6361
-Worth: 10411
-#############
-Generator: Wait
-Cost: 1000.95
-Day: 68
-Final Money: -17
-Assets: 63.6361
-Worth: 10567
-#############
-Generator: Wait
-Cost: 1000.95
-Day: 67
-Final Money: -17
-Assets: 63.6361
-Worth: 10485.5
-#############
-Generator: Buy
-Cost: 1000.95
-Day: 66
-Final Money: -17
-Assets: 63.6361
-Worth: 10033
-#############
-Generator: Wait
-Cost: 932.951
-Day: 65
-Final Money: 10050
-Assets: 0
-Worth: 10050
-#############
-Generator: Wait
-Cost: 932.951
-Day: 64
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 63
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 62
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 61
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 60
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 59
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 58
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 57
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 56
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 55
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 54
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 53
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
+Cost: 1034
 Day: 52
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 51
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 50
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 49
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 48
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 47
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 46
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 45
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 44
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 43
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 42
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 41
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 40
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 39
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 38
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 37
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 36
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 35
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 932.951
-Day: 34
-Final Money: 10067
-Assets: 0
-Worth: 10067
-#############
-Generator: Wait
-Cost: 949.951
-Day: 33
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 32
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 31
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 30
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 29
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 28
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 27
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 26
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 25
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 24
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 23
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 22
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 21
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 20
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 19
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 18
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 17
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 16
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 15
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 14
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 13
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 12
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 11
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 10
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 9
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 8
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 7
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 6
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 5
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Wait
-Cost: 949.951
-Day: 4
-Final Money: 10084
-Assets: 0
-Worth: 10084
-#############
-Generator: Sell
-Cost: 949.951
-Day: 3
-Final Money: 10084
-Assets: 0
-Worth: 10084
+Final Money: -34
+Assets: 270.783
+Worth: 11563.6
 #############
 Generator: Wait
 Cost: 1034
+Day: 51
+Final Money: -34
+Assets: 270.783
+Worth: 11590.7
+#############
+Generator: Wait
+Cost: 1034
+Day: 50
+Final Money: -34
+Assets: 270.783
+Worth: 11509.5
+#############
+Generator: Wait
+Cost: 1034
+Day: 49
+Final Money: -34
+Assets: 270.783
+Worth: 11542
+#############
+Generator: Wait
+Cost: 1034
+Day: 48
+Final Money: -34
+Assets: 270.783
+Worth: 11349.7
+#############
+Generator: Wait
+Cost: 1034
+Day: 47
+Final Money: -34
+Assets: 270.783
+Worth: 11363.2
+#############
+Generator: Wait
+Cost: 1034
+Day: 46
+Final Money: -34
+Assets: 270.783
+Worth: 11065.4
+#############
+Generator: Wait
+Cost: 1034
+Day: 45
+Final Money: -34
+Assets: 270.783
+Worth: 11060
+#############
+Generator: Wait
+Cost: 1034
+Day: 44
+Final Money: -34
+Assets: 270.783
+Worth: 11116.8
+#############
+Generator: Wait
+Cost: 1034
+Day: 43
+Final Money: -34
+Assets: 270.783
+Worth: 10892.1
+#############
+Generator: Wait
+Cost: 1034
+Day: 42
+Final Money: -34
+Assets: 270.783
+Worth: 11032.9
+#############
+Generator: Wait
+Cost: 1034
+Day: 41
+Final Money: -34
+Assets: 270.783
+Worth: 11092.5
+#############
+Generator: Wait
+Cost: 1034
+Day: 40
+Final Money: -34
+Assets: 270.783
+Worth: 10992.3
+#############
+Generator: Wait
+Cost: 1034
+Day: 39
+Final Money: -34
+Assets: 270.783
+Worth: 11089.7
+#############
+Generator: Wait
+Cost: 1034
+Day: 38
+Final Money: -34
+Assets: 270.783
+Worth: 11122.2
+#############
+Generator: Wait
+Cost: 1034
+Day: 37
+Final Money: -34
+Assets: 270.783
+Worth: 11030.2
+#############
+Generator: Wait
+Cost: 1034
+Day: 36
+Final Money: -34
+Assets: 270.783
+Worth: 10911
+#############
+Generator: Wait
+Cost: 1034
+Day: 35
+Final Money: -34
+Assets: 270.783
+Worth: 10683.6
+#############
+Generator: Wait
+Cost: 1034
+Day: 34
+Final Money: -34
+Assets: 270.783
+Worth: 10762.1
+#############
+Generator: Wait
+Cost: 1034
+Day: 33
+Final Money: -34
+Assets: 270.783
+Worth: 10659.2
+#############
+Generator: Wait
+Cost: 1034
+Day: 32
+Final Money: -34
+Assets: 270.783
+Worth: 10745.9
+#############
+Generator: Wait
+Cost: 1527
+Day: 31
+Final Money: -17
+Assets: 270.783
+Worth: 10741.2
+#############
+Generator: Wait
+Cost: 1527
+Day: 30
+Final Money: -17
+Assets: 270.783
+Worth: 10803.5
+#############
+Generator: Wait
+Cost: 1527
+Day: 29
+Final Money: -17
+Assets: 270.783
+Worth: 10611.2
+#############
+Generator: Wait
+Cost: 1527
+Day: 28
+Final Money: -17
+Assets: 270.783
+Worth: 10557.1
+#############
+Generator: Wait
+Cost: 1527
+Day: 27
+Final Money: -17
+Assets: 270.783
+Worth: 10692.5
+#############
+Generator: Wait
+Cost: 1527
+Day: 26
+Final Money: -17
+Assets: 270.783
+Worth: 10760.1
+#############
+Generator: Wait
+Cost: 1527
+Day: 25
+Final Money: -17
+Assets: 270.783
+Worth: 10630.2
+#############
+Generator: Wait
+Cost: 1527
+Day: 24
+Final Money: -17
+Assets: 270.783
+Worth: 10465
+#############
+Generator: Wait
+Cost: 1527
+Day: 23
+Final Money: -17
+Assets: 270.783
+Worth: 10492.1
+#############
+Generator: Wait
+Cost: 1527
+Day: 22
+Final Money: -17
+Assets: 270.783
+Worth: 10516.4
+#############
+Generator: Wait
+Cost: 1527
+Day: 21
+Final Money: -17
+Assets: 270.783
+Worth: 10408.1
+#############
+Generator: Wait
+Cost: 1527
+Day: 20
+Final Money: -17
+Assets: 270.783
+Worth: 10088.6
+#############
+Generator: Wait
+Cost: 1527
+Day: 19
+Final Money: -17
+Assets: 270.783
+Worth: 10029
+#############
+Generator: Wait
+Cost: 1527
+Day: 18
+Final Money: -17
+Assets: 270.783
+Worth: 9991.12
+#############
+Generator: Wait
+Cost: 1527
+Day: 17
+Final Money: -17
+Assets: 270.783
+Worth: 9980.29
+#############
+Generator: Wait
+Cost: 1527
+Day: 16
+Final Money: -17
+Assets: 270.783
+Worth: 10026.3
+#############
+Generator: Wait
+Cost: 1527
+Day: 15
+Final Money: -17
+Assets: 270.783
+Worth: 10002
+#############
+Generator: Wait
+Cost: 1527
+Day: 14
+Final Money: -17
+Assets: 270.783
+Worth: 9939.67
+#############
+Generator: Wait
+Cost: 1527
+Day: 13
+Final Money: -17
+Assets: 270.783
+Worth: 9936.97
+#############
+Generator: Wait
+Cost: 1527
+Day: 12
+Final Money: -17
+Assets: 270.783
+Worth: 9926.14
+#############
+Generator: Wait
+Cost: 1527
+Day: 11
+Final Money: -17
+Assets: 270.783
+Worth: 10072.4
+#############
+Generator: Wait
+Cost: 1527
+Day: 10
+Final Money: -17
+Assets: 270.783
+Worth: 10061.5
+#############
+Generator: Wait
+Cost: 1527
+Day: 9
+Final Money: -17
+Assets: 270.783
+Worth: 10159
+#############
+Generator: Wait
+Cost: 1527
+Day: 8
+Final Money: -17
+Assets: 270.783
+Worth: 10137.3
+#############
+Generator: Wait
+Cost: 1527
+Day: 7
+Final Money: -17
+Assets: 270.783
+Worth: 10110.3
+#############
+Generator: Wait
+Cost: 1527
+Day: 6
+Final Money: -17
+Assets: 270.783
+Worth: 10002
+#############
+Generator: Wait
+Cost: 1527
+Day: 5
+Final Money: -17
+Assets: 270.783
+Worth: 9853.02
+#############
+Generator: Wait
+Cost: 1527
+Day: 4
+Final Money: -17
+Assets: 270.783
+Worth: 9774.5
+#############
+Generator: Wait
+Cost: 1527
+Day: 3
+Final Money: -17
+Assets: 270.783
+Worth: 9869.27
+#############
+Generator: Wait
+Cost: 1527
 Day: 2
 Final Money: -17
-Assets: 54.1506
-Worth: 9964.59
+Assets: 270.783
+Worth: 10010.1
 #############
 Generator: Buy
-Cost: 1034
+Cost: 1527
 Day: 1
 Final Money: -17
-Assets: 54.1506
+Assets: 270.783
 Worth: 9983
 #############
