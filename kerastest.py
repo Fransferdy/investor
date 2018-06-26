@@ -141,7 +141,7 @@ def main():
 
     model.fit(samples, labels, epochs=131,validation_split=0.30, batch_size=64,callbacks=callbacks_list)
 
-    testYear =  yearOfstockDataToList(data,'2011')
+    testYear =  yearOfstockDataToList(data,'2013')
     testYearSize = len(testYear)
 
     myMoney = 10000
@@ -168,7 +168,7 @@ def main():
             if (myAssets>0):
                 myMoney -= 17
                 myMoney += testYear[i]["4. close"]*myAssets
-                myAssets+= amountToBuy
+                myAssets= 0
                 waitCounter=0
         if (opt==2): #wait
             waitCounter+= 1
