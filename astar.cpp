@@ -531,13 +531,14 @@ int main()
     std::map<std::string,int> dayResults;
     json::JSON out;
 
-    stocks = loadStocksFromJson("stocksbr.json","2012");
+    stocks = loadStocksFromJson("stocksbr.json","2011");
     /*
     for (auto it = stocks.begin() ; it != stocks.end(); ++it)
         (*it).selfPrint();
     */
 
     searchYear(stocks,10000,1.1,dayResults);
+    /*
 
     stocks = loadStocksFromJson("stocksbr.json","2013");
     searchYear(stocks,10000,1.1,dayResults);
@@ -581,4 +582,6 @@ int main()
         //std::cout << it->first << " => " << it->second << std::endl;
     
     //std::cout << problem.out << std::endl;
+
+    */
 }
