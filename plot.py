@@ -1,19 +1,8 @@
 import numpy
-from keras.datasets import imdb
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.layers import LSTM
-from keras.layers.convolutional import Conv1D
-from keras.layers.convolutional import MaxPooling1D
-from keras.layers.embeddings import Embedding
-from keras.preprocessing import sequence
 import datetime
 import json
-from keras.utils import np_utils
-from keras import regularizers
-from keras.layers import Dropout
-from keras.callbacks import ModelCheckpoint
 import matplotlib.pyplot as plt
+import sys
 
 M_BUY = 0
 M_SELL = 1
@@ -26,7 +15,6 @@ def getSinceEpochDay(dateString):
     year = int(dateString[0:4])
     month = int(dateString[5:7])
     day = int(dateString[8:10])
-    #print dateString
     sinceEpochDay = ((datetime.datetime(year,month,day) - datetime.datetime(1970,1,1)).days)
     return sinceEpochDay
 
@@ -103,7 +91,9 @@ def yearOfstockDataToList(data,year):
 
 
 def main():
-
+    if (len(sys.argv)<2):
+        print "Invalid Number of Arguments, call python plot.py year"
+    yeartoplot = str(sys.argv[1])
     with open('labeledDays.json') as f: 
         labeledData = json.load(f)
 
@@ -113,130 +103,34 @@ def main():
     data = data["Time Series (Daily)"]
     days = stockDataToList(data)
 
-    samples = []
-    labels = []
-    for i in range(0,10):
-        addSamples(M_BUY, labeledData["buy"],days,samples,labels,i/10,0.1)
-        addSamples(M_SELL, labeledData["sell"],days,samples,labels,i/10,0.1)
-        addSamples(M_WAIT, labeledData["wait"],days,samples,labels,i/10,0.1)
-    #print (samples)
-    #print (labels)
-    samples = numpy.array(samples)
-    labels = numpy.array(labels)
-
-    labels = np_utils.to_categorical(labels, 3)
-    print labels
-
-    model = Sequential()
-    model.add(Dense(units=64, activation='relu', input_dim=len(samples[0]) ))
-    model.add(Dropout(0.2))
-    model.add(Dense(units=32, activation='relu'))
-    #model.add(Dropout(0.1))
-    model.add(Dense(units=16, activation='relu'))
-    model.add(Dense(units=8, activation='relu'))
-    model.add(Dense(units=3, activation='softmax'))
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-    print(model.summary())
-
-    filepath="weights.best.hdf5"
-    checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
-    callbacks_list = [checkpoint]
-
-    model.fit(samples, labels, epochs=1000, batch_size=64,callbacks=callbacks_list)
-
-    testYear =  yearOfstockDataToList(data,'2013')
-    testYearSize = len(testYear)
-
-    myMoney = 10000
-    myAssets = 0
-    buys = 0
-    sells = 0
-    waits = 0
-    for i in range(0,testYearSize):
-        dayFeature = [dayToFeature(testYear[i]["date"],testYear)]
-        dayFeature = numpy.array(dayFeature)
-        #print dayFeature.shape
-        #print dayFeature
-        result = model.predict(dayFeature)
-        maxopt = 0
-        for k in range(0,2):
-            if (result[0][k] > maxopt):
-                opt = k
-                maxopt  = result[0][k]
-        
-        if (opt==0): #buy
-            amountToBuy = (myMoney-17)/testYear[i]["4. close"]
-            if (amountToBuy>0):
-                myMoney -= ( (amountToBuy*testYear[i]["4. close"]) + 17)
-                myAssets+= amountToBuy
-                waitCounter=0
-                buys+= 1
-                testYear[i]["opt"] = 44
-            else:
-                waits+=1
-                testYear[i]["opt"] = 43
-        if (opt==1): #sell
-            if (myAssets>0):
-                myMoney -= 17
-                myMoney += testYear[i]["4. close"]*myAssets
-                myAssets= 0
-                waitCounter=0
-                sells+= 1
-                testYear[i]["opt"] = 42
-            else:
-                waits+=1
-                testYear[i]["opt"] = 43
-        if (opt==2): #wait
-            waitCounter+= 1
-            if (waitCounter>=30):
-                waitCounter = 0
-                myMoney -= 17
-            waits+=1
-            testYear[i]["opt"] = 43
-
-    worth = (myAssets * testYear[len(testYear)-1]["4. close"]) + myMoney
-    print "money ", myMoney
-    print "assets ", myAssets
-    print "worth ",worth
-    print "buys ",buys
-    print "sells ",sells
-    print "waits ",waits
-
-    testYear =  yearOfstockDataToList(data,'2013')
+    testYear =  yearOfstockDataToList(data,yeartoplot)
     testYearSize = len(testYear)
     x = []
     y = []
     z = []
-    k = []
     for i in range(0,testYearSize):
-        k.append(testYear[i]["opt"])
         if (testYear[i]["date"] in labeledData["buy"]):
             x.append(i)
             y.append(39)
             z.append(testYear[i]["4. close"])
-        else:
-            if (testYear[i]["date"] in labeledData["sell"]):
-                x.append(i)
-                y.append(37)
-                z.append(testYear[i]["4. close"])
-            else:
-                x.append(i)
-                y.append(38)
-                z.append(testYear[i]["4. close"])
-
+        if (testYear[i]["date"] in labeledData["sell"]):
+            x.append(i)
+            y.append(37)
+            z.append(testYear[i]["4. close"])
+        if (testYear[i]["date"] in labeledData["wait"]):
+            x.append(i)
+            y.append(38)
+            z.append(testYear[i]["4. close"])
 
     x = numpy.array(x)
     y = numpy.array(y)
     z = numpy.array(z)
-    k = numpy.array(k)
     
     print x.shape
     print y.shape
     plt.plot(x, y)
     plt.plot(x, z)
-    plt.plot(x, k)
     plt.show()
-
 
 
 
