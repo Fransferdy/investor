@@ -224,7 +224,7 @@ class SellBuyProblem : public Problem
             expectedMoneyGain+=0.1;
 
             float worth = node->state.getWorth();
-            if (highestValueSoFar <= worth)
+            if (highestValueSoFar <= worth && node->state.day == maxDay-1)
             {
                 highestValueSoFar = worth;
                 highestDay = node->state.day;
@@ -362,7 +362,7 @@ class SellBuyProblem : public Problem
         for (std::vector<Node*>::iterator it = newNodes.begin() ; it != newNodes.end(); ++it)
         {
             worth = (*it)->state.getWorth();
-            if (highestValueSoFar <= worth)
+            if (highestValueSoFar <= worth && (*it)->state.day == maxDay-1)
             {
                 highestValueSoFar = worth;
                 highestDay = (*it)->state.day;
@@ -403,7 +403,7 @@ class SellBuyProblem : public Problem
 };
 
 
-void search(Node *startNode, Problem * problem)
+std::pair<float,float> search(Node *startNode, Problem * problem)
 {
     std::set<Node*,compareNode> nodeList;
     std::vector<Node*> pastNodes;
@@ -430,8 +430,10 @@ void search(Node *startNode, Problem * problem)
             pastNodes.push_back(*it);
         }
         if (problem->stopCondition(newNodes))
-            break;   
+            break;  
     }
+    auto ret1 = ((SellBuyProblem*)problem)->highestNode->state.assets;
+    auto ret2 = ((SellBuyProblem*)problem)->highestNode->state.money;
     
     for (auto it = pastNodes.begin() ; it != pastNodes.end(); ++it)
     {
@@ -439,7 +441,7 @@ void search(Node *startNode, Problem * problem)
         //std::cout << "deleted " << deleteNode->state.day << std::endl;
         delete deleteNode;  
     }
-
+    return std::pair<float,float>(ret1,ret2); 
 }
 
     void dumpObjectConst( const json::JSON &object ) {
@@ -507,8 +509,10 @@ void searchYear(std::vector<StockDay> stocks, float initialMoney,float expectedG
     start->heuristicFutureCost = initialMoney*expectedGain - initialMoney;
     start->state.dayData = &stocks[0];
     SellBuyProblem problem(initialMoney,expectedGain,halfsize,17,&stocksFirst,&dayResults);
-    search(start,&problem);
+    auto output = search(start,&problem);
 
+    //initialMoney = output.second;
+    //start->state.assets = output.first;
     start = new Node();
     start->state.buySellAmount = 1;
     start->state.day=0;
@@ -594,6 +598,9 @@ int main()
     searchYear(stocks,10000,1.1,dayResults);
 
     stocks = loadStocksFromJson("stocksbr.json","2011");
+    searchYear(stocks,10000,1.1,dayResults);
+
+    stocks = loadStocksFromJson("stocksbr.json","2012");
     searchYear(stocks,10000,1.1,dayResults);
     
     stocks = loadStocksFromJson("stocksbr.json","2013");

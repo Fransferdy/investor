@@ -22,6 +22,9 @@ M_WAIT = 2
 # fix random seed for reproducibility
 numpy.random.seed(7)
 
+
+
+
 def getSinceEpochDay(dateString):
     year = int(dateString[0:4])
     month = int(dateString[5:7])
@@ -49,7 +52,7 @@ def dayToFeature(dateString,daysList):
         if (daysList[i]["sinceEpochDay"]==daySinceEpoch):
             myDay = i
             break
-    for i in range(1,80):
+    for i in range(1,50):
         retFeatures.extend(relativeDay(i,myDay,daysList))
 
 
@@ -128,12 +131,12 @@ def main():
     print labels
 
     model = Sequential()
-    model.add(Dense(units=64, activation='relu', input_dim=len(samples[0]) ))
+    model.add(Dense(units=5, activation='relu', input_dim=len(samples[0]) ))
     model.add(Dropout(0.2))
-    model.add(Dense(units=32, activation='relu'))
+    #model.add(Dense(units=32, activation='relu'))
     #model.add(Dropout(0.1))
-    model.add(Dense(units=16, activation='relu'))
-    model.add(Dense(units=8, activation='relu'))
+    #model.add(Dense(units=16, activation='relu'))
+    #model.add(Dense(units=8, activation='relu'))
     model.add(Dense(units=3, activation='softmax'))
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     print(model.summary())
@@ -142,11 +145,20 @@ def main():
     checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
     callbacks_list = [checkpoint]
 
-    model.fit(samples, labels, epochs=1000, batch_size=64,callbacks=callbacks_list)
+    model.fit(samples, labels, epochs=100,validation_split=0.3, batch_size=64,callbacks=callbacks_list)
 
-    testYear =  yearOfstockDataToList(data,'2013')
+    model.evaluate(samples, labels)
+    model.evaluate(samples, labels)
+    model.evaluate(samples, labels)
+    model.evaluate(samples, labels)
+    #result = model.predict(samples)
+    #print result
+
+
+    testYear =  yearOfstockDataToList(data,'2015')
     testYearSize = len(testYear)
 
+    print testYearSize
     myMoney = 10000
     myAssets = 0
     buys = 0
@@ -155,12 +167,12 @@ def main():
     for i in range(0,testYearSize):
         dayFeature = [dayToFeature(testYear[i]["date"],testYear)]
         dayFeature = numpy.array(dayFeature)
-        #print dayFeature.shape
-        #print dayFeature
         result = model.predict(dayFeature)
+        
         maxopt = 0
         for k in range(0,2):
             if (result[0][k] > maxopt):
+                #print result[i]
                 opt = k
                 maxopt  = result[0][k]
         
@@ -202,8 +214,8 @@ def main():
     print "sells ",sells
     print "waits ",waits
 
-    testYear =  yearOfstockDataToList(data,'2013')
-    testYearSize = len(testYear)
+    #testYear =  days#yearOfstockDataToList(data,'2013')
+    #testYearSize = len(testYear)
     x = []
     y = []
     z = []
@@ -232,6 +244,7 @@ def main():
     
     print x.shape
     print y.shape
+
     plt.plot(x, y)
     plt.plot(x, z)
     plt.plot(x, k)
