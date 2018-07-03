@@ -52,7 +52,7 @@ def dayToFeature(dateString,daysList):
         if (daysList[i]["sinceEpochDay"]==daySinceEpoch):
             myDay = i
             break
-    for i in range(1,50):
+    for i in range(1,60):
         retFeatures.extend(relativeDay(i,myDay,daysList))
 
 
@@ -131,35 +131,32 @@ def main():
     print labels
 
     model = Sequential()
-    model.add(Dense(units=5, activation='relu', input_dim=len(samples[0]) ))
+    model.add(Dense(units=33, activation='relu', input_dim=len(samples[0]) ))
     model.add(Dropout(0.2))
-    #model.add(Dense(units=32, activation='relu'))
+    model.add(Dense(units=15, activation='relu'))
     #model.add(Dropout(0.1))
-    #model.add(Dense(units=16, activation='relu'))
+    model.add(Dense(units=7, activation='relu'))
     #model.add(Dense(units=8, activation='relu'))
     model.add(Dense(units=3, activation='softmax'))
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['binary_accuracy', 'categorical_accuracy'])
     print(model.summary())
 
     filepath="weights.best.hdf5"
     checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
     callbacks_list = [checkpoint]
 
-    model.fit(samples, labels, epochs=100,validation_split=0.3, batch_size=64,callbacks=callbacks_list)
-
-    model.evaluate(samples, labels)
-    model.evaluate(samples, labels)
-    model.evaluate(samples, labels)
-    model.evaluate(samples, labels)
+    model.fit(samples, labels, epochs=600,validation_split=0.3, batch_size=1900,callbacks=callbacks_list)
+    print model.metrics_names
+    print model.evaluate(samples, y=labels,verbose=1,batch_size=1900)
     #result = model.predict(samples)
     #print result
 
 
-    testYear =  yearOfstockDataToList(data,'2015')
+    testYear =  yearOfstockDataToList(data,'2011')
     testYearSize = len(testYear)
 
     print testYearSize
-    myMoney = 10000
+    myMoney = 5000
     myAssets = 0
     buys = 0
     sells = 0
